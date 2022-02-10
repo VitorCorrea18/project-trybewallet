@@ -42,10 +42,14 @@ class Login extends React.Component {
     const { email, password, isLoginBtnDisabled, redirect } = this.state;
     if (redirect) return <Redirect to="/carteira" />;
     return (
-      <form onSubmit={ this.handleSubmit }>
+      <form
+        onSubmit={ this.handleSubmit }
+        className="login-page__form"
+      >
         <input
           data-testid="email-input"
           name="email"
+          className="default--input"
           type="email"
           placeholder="E-mail"
           value={ email }
@@ -54,6 +58,7 @@ class Login extends React.Component {
         <input
           data-testid="password-input"
           name="password"
+          className="default--input"
           type="password"
           placeholder="Senha"
           value={ password }
@@ -61,7 +66,7 @@ class Login extends React.Component {
         />
         <button
           type="submit"
-          className="default__button"
+          className="default--button"
           disabled={ isLoginBtnDisabled }
         >
           Entrar
@@ -74,5 +79,9 @@ class Login extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   getUserEmail: (email) => dispatch(userLogin(email)),
 });
+
+Login.propTypes = {
+  getUserEmail: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Login);
