@@ -1,0 +1,11 @@
+.login-page__form {
+  align-items: center;
+  background: #071013;
+  border-radius: 90px;
+  display: flex;
+  flex-direction: column;
+  height: 25rem;
+  justify-content: space-evenly;
+  padding-bottom: 50px;
+  width: 35rem;
+}

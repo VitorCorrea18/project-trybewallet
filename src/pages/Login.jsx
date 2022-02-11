@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userLogin } from '../actions/index';
+import '../css/login.css';
 
 const PASSWORD_MIN = 6;
 const EMAIL_FORMAT = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -46,6 +47,7 @@ class Login extends React.Component {
         onSubmit={ this.handleSubmit }
         className="login-page__form"
       >
+        <h1 className="default--title">TrybeWallet</h1>
         <input
           data-testid="email-input"
           name="email"

@@ -1,0 +1,30 @@
+.default--title {
+  color: #23b5d3;
+  font-size: 40px;
+}
+
+.default--input {
+  background: #dfe0e2;
+  border: none;
+  border-radius: 7px;
+  height: 30px;
+  padding: 7px;
+}
+
+.default--button {
+  background: #23b5d3;
+  border: none;
+  border-radius: 7px;
+  font-size: 16px;
+  height: 35px;
+  width: 150px;
+}
+
+.default--button:hover {
+  background: #3cd0ee;
+}
+
+.default--button:active {
+  padding: 8px;
+  border: white solid 1px;
+}
