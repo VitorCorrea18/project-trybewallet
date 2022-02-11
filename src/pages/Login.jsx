@@ -20,6 +20,9 @@ class Login extends React.Component {
   }
 
   checkLoginInputs = () => {
+    // verifica se os campos email e senha possuem o formato correto
+    // e habilita o botão caso verdadeiro
+
     const { email, password } = this.state;
     if (email.match(EMAIL_FORMAT) && password.length >= PASSWORD_MIN) {
       this.setState({ isLoginBtnDisabled: false });
@@ -32,6 +35,8 @@ class Login extends React.Component {
   };
 
   handleSubmit = (e) => {
+    // salva userEmail no estado global e aciona o Redirect
+
     e.preventDefault();
     const { email } = this.state;
     const { getUserEmail } = this.props;
