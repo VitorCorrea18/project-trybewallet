@@ -1,14 +1,19 @@
 import fetchApi from '../services/fetchApi';
-import { USER_LOGIN, ADD_WALLET_EXPENSES } from './actionTypes';
+import { USER_LOGIN, ADD_WALLET_EXPENSES, FETCH_CURRENCIES } from './actionTypes';
 
-export const userLogin = (email) => ({
+export const userLogin = (payload) => ({
   type: USER_LOGIN,
-  payload: email,
+  payload,
 });
 
-export const addWalletExpenses = (expense) => ({
+export const addWalletExpenses = (payload) => ({
   type: ADD_WALLET_EXPENSES,
-  payload: expense,
+  payload,
+});
+
+export const addCurrencies = (payload) => ({
+  type: FETCH_CURRENCIES,
+  payload,
 });
 
 export const fetchApiThunk = (expense) => async (dispatch) => {

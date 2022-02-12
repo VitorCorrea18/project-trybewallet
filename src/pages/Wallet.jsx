@@ -1,7 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchApiThunk } from '../actions/index';
+import { fetchApiThunk, addCurrencies } from '../actions/index';
+import Form from '../components/Form';
 
 class Wallet extends React.Component {
   constructor() {
@@ -17,6 +18,15 @@ class Wallet extends React.Component {
     };
   }
 
+  // componentDidMount() {
+  //   this.fetchCurrencies();
+  // }
+
+  // fetchCurrencies = async () => {
+  //   const { addCurrenciesProp } = this.props;
+  //   const data = await fetch()
+  // }
+
   onInputChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
@@ -27,8 +37,17 @@ class Wallet extends React.Component {
     return id;
   }
 
-  handleClick = () => {
-    // expenses deve ir já com a chave exchangeRates que será um objeto vazio
+  calculateTotal = (expense) => {
+    const { exchangeRates, currency, value } = expense;
+    const { expensesTotal } = this.state;
+    const { ask } = exchangeRates[currency];
+    const newExpense = value * ask;
+    this.setState({ expensesTotal: expensesTotal + newExpense });
+  }
+
+  handleClick = async (e) => {
+    // expense deve ir já com a chave exchangeRates que será um objeto vazio preenchido após a chamada da API.
+    e.preventDefault();
     const { fetchApiProp, expenses } = this.props;
     const { valueInput, descriptionInput, currency, method, tag } = this.state;
     const id = this.generateId(expenses);
@@ -41,12 +60,13 @@ class Wallet extends React.Component {
       tag,
       exchangeRates: {},
     };
-    fetchApiProp(expense);
+    await fetchApiProp(expense); // mapDispatchToProps
+    this.calculateTotal(expense);
   }
 
   render() {
     const { expensesTotal, localCurrency, valueInput, descriptionInput } = this.state;
-    const { userEmail, currencies } = this.props;
+    const { userEmail } = this.props;
     return (
       <div className="wallet__page">
         <header className="wallet__page--header">
@@ -75,112 +95,12 @@ class Wallet extends React.Component {
           </div>
         </header>
         <aside className="Wallet__page--menu-aside">
-          <label
-            className="default--input-label"
-            htmlFor="valueInput"
-          >
-            Valor
-            <input
-              data-testid="value-input"
-              className="default--input"
-              id="valueInput"
-              name="valueInput"
-              type="number"
-              value={ valueInput }
-              onChange={ this.onInputChange }
-            />
-          </label>
-
-          <label
-            className="default--input-label"
-            htmlFor="currency"
-          >
-            Moeda
-            <select
-              data-testid="currency-input"
-              className="default--select"
-              name="currency"
-              id="currency"
-              onChange={ this.onInputChange }
-            >
-              <option value="USD">USD</option>
-              <option value="BTC">BTC</option>
-              {
-                // currencies do estado global da App, alimentado pela API
-                currencies.map((crrCurrency) => (
-                  <option
-                    key={ crrCurrency }
-                    value={ crrCurrency }
-                    data-testid={ crrCurrency }
-                  >
-                    { crrCurrency }
-                  </option>
-                ))
-              }
-            </select>
-          </label>
-
-          <label
-            className="default--input-label"
-            htmlFor="method"
-          >
-            Método de Pagamento
-            <select
-              data-testid="method-input"
-              className="default--select"
-              name="method"
-              id="method"
-              onChange={ this.onInputChange }
-            >
-              <option value="dinheiro">Dinheiro</option>
-              <option value="cartão de crédito">Cartão de crédito</option>
-              <option value="cartão de débito">Cartão de débito</option>
-            </select>
-          </label>
-
-          <label
-            className="default--input-label"
-            htmlFor="tag"
-          >
-            Tag
-            <select
-              data-testid="tag-input"
-              className="default--select"
-              name="tag"
-              id="tag"
-              onChange={ this.onInputChange }
-            >
-              <option value="alimentação">Alimentação</option>
-              <option value="lazer">Lazer</option>
-              <option value="trabalho">Trabalho</option>
-              <option value="transporte">Transporte</option>
-              <option value="saúde">Saúde</option>
-            </select>
-          </label>
-
-          <label
-            className="default--input-label"
-            htmlFor="description"
-          >
-            Descrição
-            <input
-              data-testid="description-input"
-              className="default--input"
-              id="description"
-              name="descriptionInput"
-              type="text"
-              value={ descriptionInput }
-              onChange={ this.onInputChange }
-            />
-          </label>
-
-          <button
-            type="button"
-            className="default--button"
-            onClick={ this.handleClick }
-          >
-            Adicionar despesa
-          </button>
+          <Form
+            handleClick={ this.handleClick }
+            onInputChange={ this.onInputChange }
+            valueInput={ valueInput }
+            descriptionInput={ descriptionInput }
+          />
         </aside>
       </div>
     );
@@ -191,15 +111,16 @@ const mapStateToProps = ({ user, wallet }) => ({
   userEmail: user.email,
   currencies: wallet.currencies,
   expenses: wallet.expenses,
+  expensesTotal: wallet.expensesTotal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchApiProp: (expense) => dispatch(fetchApiThunk(expense)),
+  addCurrenciesProp: (currencies) => dispatch(addCurrencies(currencies)),
 });
 
 Wallet.propTypes = {
   userEmail: propTypes.string.isRequired,
-  currencies: propTypes.instanceOf(Array).isRequired,
   expenses: propTypes.instanceOf(Array).isRequired,
   fetchApiProp: propTypes.func.isRequired,
 };
