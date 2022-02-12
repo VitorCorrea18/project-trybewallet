@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchApiThunk, addCurrencies } from '../actions/index';
 import fetchApi from '../services/fetchApi';
 import Form from '../components/Form';
+import Table from '../components/Table';
 
 class Wallet extends React.Component {
   constructor() {
@@ -100,7 +101,7 @@ class Wallet extends React.Component {
             </span>
           </div>
         </header>
-        <aside className="Wallet__page--menu-aside">
+        <aside className="wallet__page--menu-aside">
           <Form
             handleClick={ this.handleClick }
             onInputChange={ this.onInputChange }
@@ -108,6 +109,7 @@ class Wallet extends React.Component {
             descriptionInput={ descriptionInput }
           />
         </aside>
+        <Table />
       </div>
     );
   }
