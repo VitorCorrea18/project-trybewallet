@@ -37,8 +37,6 @@ class Form extends React.Component {
             id="currency"
             onChange={ onInputChange }
           >
-            <option value="USD">USD</option>
-            <option value="BTC">BTC</option>
             {
               // currencies do estado global da App, alimentado pela API
               currencies.map((crrCurrency) => (

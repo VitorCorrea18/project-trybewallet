@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchApiThunk, addCurrencies } from '../actions/index';
+import fetchApi from '../services/fetchApi';
 import Form from '../components/Form';
 
 class Wallet extends React.Component {
@@ -18,14 +19,19 @@ class Wallet extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.fetchCurrencies();
-  // }
+  componentDidMount() {
+    this.fetchCurrencies();
+  }
 
-  // fetchCurrencies = async () => {
-  //   const { addCurrenciesProp } = this.props;
-  //   const data = await fetch()
-  // }
+  fetchCurrencies = async () => {
+    // abastece a chave currencies no estado global, para dar as opção de moedas que vem na API
+
+    const { addCurrenciesProp } = this.props;
+    const response = await fetchApi();
+    const data = Object.keys(response);
+    const currencies = data.filter((currency) => currency !== 'USDT');
+    addCurrenciesProp(currencies); // mapStateToProp
+  }
 
   onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -123,6 +129,7 @@ Wallet.propTypes = {
   userEmail: propTypes.string.isRequired,
   expenses: propTypes.instanceOf(Array).isRequired,
   fetchApiProp: propTypes.func.isRequired,
+  addCurrenciesProp: propTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
