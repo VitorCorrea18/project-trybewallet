@@ -46,8 +46,8 @@
 .default--input-label {
   display: flex;
   flex-direction: column;
+  font-family: Georgia , "Times New Roman" , Times , serif;
   font-size: 18px;
-  font-family:Georgia, 'Times New Roman', Times, serif;
   margin: 8px 5%;
   width: 40%;
 }

@@ -1,14 +1,13 @@
 .wallet__page {
   background: #dfe0e2;
   display: grid;
+  grid-auto-rows: 1fr;
   grid-template-columns: 25% 75%;
   grid-template-rows: 12% 88%;
-  grid-auto-rows: 1fr;
-  gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-  "header header"
-  "aside__menu expenditure__list";
+    'header header'
+    'aside__menu expenditure__list';
   height: 100vh;
   width: 100vw;
 }
@@ -22,7 +21,7 @@
   justify-content: space-between;
 }
 
-.__header--section{
+.__header--section {
   display: flex;
 }
 
@@ -49,7 +48,7 @@
   padding: 15px;
 }
 
-.--div-span-total{
+.--div-span-total {
   color: red;
   margin: 0 10px;
 }
@@ -75,7 +74,7 @@
 
 .button {
   margin: 50px auto;
-} 
+}
 
 .wallet__page--table {
   border-collapse: collapse;
@@ -94,7 +93,7 @@
   text-align: center;
 }
 
-.table--body tr:nth-child(even){
+.table--body tr:nth-child( even ) {
   background-color: #f2f2f2;
 }
 
