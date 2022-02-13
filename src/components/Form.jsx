@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 class Form extends React.Component {
   render() {
     const {
-      handleClick, valueInput, descriptionInput, onInputChange, currencies } = this.props;
+      handleClick, valueInput, descriptionInput, onInputChange, currencies, isDisabled,
+    } = this.props;
 
     return (
       <form className="--menu-aside-form" onSubmit={ handleClick }>
@@ -109,6 +110,7 @@ class Form extends React.Component {
         <button
           type="submit"
           className="default--button button"
+          disabled={ isDisabled }
         >
           Adicionar despesa
         </button>
@@ -127,6 +129,7 @@ Form.propTypes = {
   valueInput: propTypes.string.isRequired,
   descriptionInput: propTypes.string.isRequired,
   currencies: propTypes.instanceOf(Array).isRequired,
+  isDisabled: propTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(Form);

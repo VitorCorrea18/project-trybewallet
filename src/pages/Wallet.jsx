@@ -18,6 +18,7 @@ class Wallet extends React.Component {
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
+      isExpenseBtnDisabled: true,
     };
   }
 
@@ -35,9 +36,18 @@ class Wallet extends React.Component {
     addCurrenciesProp(currencies); // mapStateToProp
   }
 
+  checkValueInput = () => {
+    // desabilita botão caso valueInput esteja vazio
+    const { valueInput } = this.state;
+    if (valueInput > 0.00) {
+      this.setState({ isExpenseBtnDisabled: false });
+    } else this.setState({ isExpenseBtnDisabled: true });
+  }
+
   onInputChange = ({ target }) => {
+    // é passado por props para o componente Form
     const { name, value } = target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, this.checkValueInput);
   }
 
   generateId = (expenses) => {
@@ -70,11 +80,17 @@ class Wallet extends React.Component {
     };
     await fetchApiProp(expense); // mapDispatchToProps
     this.calculateTotal(expense);
-    this.setState({ valueInput: '', descriptionInput: '' });
+    this.setState({ valueInput: '', descriptionInput: '' }, this.checkValueInput);
   }
 
   render() {
-    const { expensesTotal, localCurrency, valueInput, descriptionInput } = this.state;
+    const {
+      expensesTotal,
+      localCurrency,
+      valueInput,
+      descriptionInput,
+      isExpenseBtnDisabled,
+    } = this.state;
     const { userEmail } = this.props;
     return (
       <div className="wallet__page">
@@ -112,6 +128,7 @@ class Wallet extends React.Component {
             onInputChange={ this.onInputChange }
             valueInput={ valueInput }
             descriptionInput={ descriptionInput }
+            isDisabled={ isExpenseBtnDisabled }
           />
         </aside>
         <Table />
