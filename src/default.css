@@ -57,3 +57,21 @@
 .description {
   width: 100%;
 }
+
+.default--erase-btn {
+  background: red;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  height: 30px;
+  width: 30px;
+}
+
+.default--erase-btn:hover {
+  background: #ff3333;
+}
+
+.default--erase-btn:active {
+  padding-top: 5px;
+}
