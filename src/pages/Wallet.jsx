@@ -5,6 +5,7 @@ import { fetchApiThunk, addCurrencies } from '../actions/index';
 import fetchApi from '../services/fetchApi';
 import Form from '../components/Form';
 import Table from '../components/Table';
+import '../css/wallet.css';
 
 class Wallet extends React.Component {
   constructor() {
@@ -69,6 +70,7 @@ class Wallet extends React.Component {
     };
     await fetchApiProp(expense); // mapDispatchToProps
     this.calculateTotal(expense);
+    this.setState({ valueInput: '' });
   }
 
   render() {
@@ -77,29 +79,32 @@ class Wallet extends React.Component {
     return (
       <div className="wallet__page">
         <header className="wallet__page--header">
-          <div className="__header--div">
-            <span
-              data-testid="email-field"
-              className="--div-span-email"
-            >
-              {`User: ${userEmail}` }
-            </span>
-          </div>
-          <div className="__header--div">
-            <p>Despesa total: </p>
-            <span
-              data-testid="total-field"
-              className="--div-span-total"
-            >
-              { `R$ ${expensesTotal}` }
-            </span>
+          <h1 className="__header--title">TrybeWallet</h1>
+          <section className="__header--section">
+            <div className="__header--div">
+              <span
+                data-testid="email-field"
+                className="--div-span-email"
+              >
+                {`User: ${userEmail}` }
+              </span>
+            </div>
+            <div className="__header--div">
+              <p>Despesa total: </p>
+              <span
+                data-testid="total-field"
+                className="--div-span-total"
+              >
+                { `R$ ${expensesTotal}` }
+              </span>
+            </div>
             <span
               data-testid="header-currency-field"
               className="--div-span-currency"
             >
               { localCurrency }
             </span>
-          </div>
+          </section>
         </header>
         <aside className="wallet__page--menu-aside">
           <Form

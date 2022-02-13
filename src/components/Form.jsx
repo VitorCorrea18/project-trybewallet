@@ -16,7 +16,7 @@ class Form extends React.Component {
           Valor
           <input
             data-testid="value-input"
-            className="default--input"
+            className="default--input value"
             id="valueInput"
             name="valueInput"
             type="number"
@@ -26,7 +26,7 @@ class Form extends React.Component {
         </label>
 
         <label
-          className="default--input-label"
+          className="default--input-label currency"
           htmlFor="currency"
         >
           Moeda
@@ -53,7 +53,7 @@ class Form extends React.Component {
         </label>
 
         <label
-          className="default--input-label"
+          className="default--input-label method"
           htmlFor="method"
         >
           Método de Pagamento
@@ -64,14 +64,14 @@ class Form extends React.Component {
             id="method"
             onChange={ onInputChange }
           >
-            <option value="dinheiro">Dinheiro</option>
-            <option value="cartão de crédito">Cartão de crédito</option>
-            <option value="cartão de débito">Cartão de débito</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
 
         <label
-          className="default--input-label"
+          className="default--input-label tag"
           htmlFor="tag"
         >
           Tag
@@ -82,16 +82,16 @@ class Form extends React.Component {
             id="tag"
             onChange={ onInputChange }
           >
-            <option value="alimentação">Alimentação</option>
-            <option value="lazer">Lazer</option>
-            <option value="trabalho">Trabalho</option>
-            <option value="transporte">Transporte</option>
-            <option value="saúde">Saúde</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
 
         <label
-          className="default--input-label"
+          className="default--input-label description"
           htmlFor="description"
         >
           Descrição
@@ -108,7 +108,7 @@ class Form extends React.Component {
 
         <button
           type="submit"
-          className="default--button"
+          className="default--button button"
         >
           Adicionar despesa
         </button>

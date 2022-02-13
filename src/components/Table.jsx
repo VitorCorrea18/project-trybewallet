@@ -33,15 +33,15 @@ class Table extends React.Component {
 
               return (
                 <tr key={ id }>
-                  <th>{ description }</th>
-                  <th>{ tag }</th>
-                  <th>{ method }</th>
-                  <th>{ value }</th>
-                  <th>{ splitName[0] }</th>
-                  <th>{ ask }</th>
-                  <th>{ exchangedValue }</th>
-                  <th>{ CURRENCY_EXCHANGE }</th>
-                  <th>botões</th>
+                  <td>{ description }</td>
+                  <td>{ tag }</td>
+                  <td>{ method }</td>
+                  <td>{ (Math.round(value * 100) / 100).toFixed(2) }</td>
+                  <td>{ splitName[0] }</td>
+                  <td>{ (Math.round(ask * 100) / 100).toFixed(2) }</td>
+                  <td>{ exchangedValue }</td>
+                  <td>{ CURRENCY_EXCHANGE }</td>
+                  <td>botões</td>
                 </tr>
               );
             })
