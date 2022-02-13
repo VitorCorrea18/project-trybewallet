@@ -70,7 +70,7 @@ class Wallet extends React.Component {
     };
     await fetchApiProp(expense); // mapDispatchToProps
     this.calculateTotal(expense);
-    this.setState({ valueInput: '' });
+    this.setState({ valueInput: '', descriptionInput: '' });
   }
 
   render() {
@@ -95,7 +95,7 @@ class Wallet extends React.Component {
                 data-testid="total-field"
                 className="--div-span-total"
               >
-                { `R$ ${expensesTotal}` }
+                { `R$ ${(Math.round(expensesTotal * 100) / 100).toFixed(2)}` }
               </span>
             </div>
             <span
