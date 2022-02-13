@@ -22,7 +22,7 @@ class Table extends React.Component {
             <th>Editar/Excluir</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table--body">
           {
             expenses.map((expense) => {
               const {

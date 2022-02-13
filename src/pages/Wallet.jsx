@@ -16,8 +16,8 @@ class Wallet extends React.Component {
       valueInput: '',
       descriptionInput: '',
       currency: 'USD',
-      method: 'dinheiro',
-      tag: 'alimentação',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     };
   }
 

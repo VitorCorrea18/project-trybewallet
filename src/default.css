@@ -4,10 +4,20 @@
 }
 
 .default--input {
-  background: #dfe0e2;
-  border: none;
+  background: white;
+  border: #23B5D3 solid 2px;
   border-radius: 7px;
   height: 30px;
+  margin-top: 5px;
+  padding: 7px;
+}
+
+.default--select {
+  background: white;
+  border: #23B5D3 solid 2px;
+  border-radius: 7px;
+  height: 45px;
+  margin-top: 5px;
   padding: 7px;
 }
 
@@ -17,7 +27,11 @@
   border-radius: 7px;
   font-size: 16px;
   height: 35px;
-  width: 150px;
+  width: 170px;
+}
+
+.button {
+  height: 50px;
 }
 
 .default--button:hover {
@@ -27,4 +41,17 @@
 .default--button:active {
   border: white solid 1px;
   padding: 8px;
+}
+
+.default--input-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  margin: 8px 5%;
+  width: 40%;
+}
+
+.description {
+  width: 100%;
 }
