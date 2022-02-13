@@ -39,7 +39,7 @@ class Table extends React.Component {
                   <td>{ (Math.round(value * 100) / 100).toFixed(2) }</td>
                   <td>{ splitName[0] }</td>
                   <td>{ (Math.round(ask * 100) / 100).toFixed(2) }</td>
-                  <td>{ exchangedValue }</td>
+                  <td>{ (Math.round(exchangedValue * 100) / 100).toFixed(2) }</td>
                   <td>{ CURRENCY_EXCHANGE }</td>
                   <td>botões</td>
                 </tr>
