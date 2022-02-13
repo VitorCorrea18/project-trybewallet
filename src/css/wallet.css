@@ -1,11 +1,8 @@
 .wallet__page {
   background: #dfe0e2;
   display: grid;
-  grid-auto-rows: 1fr;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: 12% 88%;
-  grid-auto-flow: row;
-  grid-template-areas:
+  grid-template: 12% / 25% 75%;
+  grid-template-areas: 
     'header header'
     'aside__menu expenditure__list';
   height: 100vh;

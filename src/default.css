@@ -5,7 +5,7 @@
 
 .default--input {
   background: white;
-  border: #23B5D3 solid 2px;
+  border: #23b5d3 solid 2px;
   border-radius: 7px;
   height: 30px;
   margin-top: 5px;
@@ -14,7 +14,7 @@
 
 .default--select {
   background: white;
-  border: #23B5D3 solid 2px;
+  border: #23b5d3 solid 2px;
   border-radius: 7px;
   height: 45px;
   margin-top: 5px;
@@ -46,7 +46,7 @@
 .default--input-label {
   display: flex;
   flex-direction: column;
-  font-family: Georgia , "Times New Roman" , Times , serif;
+  font-family: 'Georgia' , 'Times' , 'serif';
   font-size: 18px;
   margin: 8px 5%;
   width: 40%;
