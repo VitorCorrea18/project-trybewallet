@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { updateExpenses } from '../actions/index';
 
 const CURRENCY_EXCHANGE = 'Real';
 
 class Table extends React.Component {
+  onEraseBtnClick = (id) => {
+    const { updateExpensesProp, expenses, updateTotal } = this.props;
+    const upDatedExpenses = expenses.filter((expense) => expense.id !== id);
+    const expenseToErase = expenses.find((expense) => expense.id === id);
+    updateExpensesProp(upDatedExpenses); // mapDispatchToProps
+    updateTotal(expenseToErase);
+  }
+
   render() {
     const { expenses } = this.props;
     return (
@@ -41,7 +50,16 @@ class Table extends React.Component {
                   <td>{ (Math.round(ask * 100) / 100).toFixed(2) }</td>
                   <td>{ (Math.round(exchangedValue * 100) / 100).toFixed(2) }</td>
                   <td>{ CURRENCY_EXCHANGE }</td>
-                  <td>botões</td>
+                  <td>
+                    <button
+                      data-testid="delete-btn"
+                      type="button"
+                      className="default--erase-btn"
+                      onClick={ () => this.onEraseBtnClick(id) }
+                    >
+                      X
+                    </button>
+                  </td>
                 </tr>
               );
             })
@@ -56,8 +74,14 @@ const mapStateToProps = ({ wallet }) => ({
   expenses: wallet.expenses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  updateExpensesProp: (updatedExpenses) => dispatch(updateExpenses(updatedExpenses)),
+});
+
 Table.propTypes = {
   expenses: propTypes.instanceOf(Array).isRequired,
+  updateExpensesProp: propTypes.func.isRequired,
+  updateTotal: propTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

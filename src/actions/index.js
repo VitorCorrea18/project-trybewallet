@@ -1,5 +1,7 @@
 import fetchApi from '../services/fetchApi';
-import { USER_LOGIN, ADD_WALLET_EXPENSES, FETCH_CURRENCIES } from './actionTypes';
+import {
+  USER_LOGIN, ADD_WALLET_EXPENSES, FETCH_CURRENCIES, UPDATE_EXPENSES,
+} from './actionTypes';
 
 export const userLogin = (payload) => ({
   type: USER_LOGIN,
@@ -13,6 +15,11 @@ export const addWalletExpenses = (payload) => ({
 
 export const addCurrencies = (payload) => ({
   type: FETCH_CURRENCIES,
+  payload,
+});
+
+export const updateExpenses = (payload) => ({
+  type: UPDATE_EXPENSES,
   payload,
 });
 

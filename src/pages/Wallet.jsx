@@ -63,6 +63,15 @@ class Wallet extends React.Component {
     this.setState({ expensesTotal: expensesTotal + newExpense });
   }
 
+  updateTotal = (expense) => {
+    const { expensesTotal } = this.state;
+    const { exchangeRates, currency, value } = expense;
+    const { ask } = exchangeRates[currency];
+    const valueToErase = value * ask;
+    const newValue = expensesTotal - valueToErase;
+    this.setState({ expensesTotal: newValue });
+  }
+
   handleClick = async (e) => {
     // expense deve ir já com a chave exchangeRates que será um objeto vazio preenchido após a chamada da API.
     e.preventDefault();
@@ -111,7 +120,7 @@ class Wallet extends React.Component {
                 data-testid="total-field"
                 className="--div-span-total"
               >
-                { `R$ ${(Math.round(expensesTotal * 100) / 100).toFixed(2)}` }
+                { `${(Math.round(expensesTotal * 100) / 100).toFixed(2)}` }
               </span>
             </div>
             <span
@@ -131,7 +140,7 @@ class Wallet extends React.Component {
             isDisabled={ isExpenseBtnDisabled }
           />
         </aside>
-        <Table />
+        <Table updateTotal={ this.updateTotal } />
       </div>
     );
   }
