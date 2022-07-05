@@ -4,7 +4,7 @@ This project was developed during the web development course at [Trybe](https://
 The project is a front end application designed to be a expense controller. You can enter expenses in many diferent currencies and the App will <br>
 make the convertion to Brazilian Real based on the currency price at the moment.
 
-<img src="./src/trybeWallet.png" alt='screenshot' width="500">
+<img src="./trybeWallet.png" alt='screenshot' width="500" height="200">
 
 ## API used
 > https://docs.awesomeapi.com.br/api-de-moedas
